@@ -1,4 +1,5 @@
 package com.susu.flwx.susu_wx_share;
+import android.content.Context;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -37,7 +38,8 @@ public class SusuWxSharePlugin implements FlutterPlugin,  MethodCallHandler {
     //FlutterPlugin
     private MethodChannel channel;
     private IWXAPI wxApi;
-    private static Registrar registrars;
+//    private static Registrar registrars;
+    private static  Context contexts;
     private static final int THUMB_SIZE = 150;
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
@@ -54,14 +56,23 @@ public class SusuWxSharePlugin implements FlutterPlugin,  MethodCallHandler {
         }
     }
 
-    public static void registerWith(PluginRegistry registry) {
-        String CHANNEL = "susu_wx_share";
-        PluginRegistry.Registrar registrar = registry.registrarFor(CHANNEL);
-        MethodChannel methodChannel = new MethodChannel(registrar.messenger(), CHANNEL);
-        registrars=registrar;
-        SusuWxSharePlugin myFlutterPlugin = new SusuWxSharePlugin();
-        methodChannel.setMethodCallHandler(myFlutterPlugin);
+
+
+
+    public static void registerWith(Context context) {
+        contexts=context;
     }
+
+
+
+//    public static void registerWith(PluginRegistry registry) {
+//        String CHANNEL = "susu_wx_share";
+//        PluginRegistry.Registrar registrar = registry.registrarFor(CHANNEL);
+//        MethodChannel methodChannel = new MethodChannel(registrar.messenger(), CHANNEL);
+//        registrars=registrar;
+//        SusuWxSharePlugin myFlutterPlugin = new SusuWxSharePlugin();
+//        methodChannel.setMethodCallHandler(myFlutterPlugin);
+//    }
 //    public static void registerWith(Registrar registrar) {
 //        final MethodChannel channel = new MethodChannel(registrar.messenger(), "sy_flutter_wechat");
 //        final SusuWxSharePlugin plugin = new SusuWxSharePlugin(registrar);
@@ -78,7 +89,7 @@ public class SusuWxSharePlugin implements FlutterPlugin,  MethodCallHandler {
     private void registerToWX(MethodCall call, Result result){
         Log.i("wyumers","111111111111111");
         String appId ="wx32b6e99c4a80f000";
-        wxApi = WXAPIFactory.createWXAPI(registrars.context(),appId,true);
+        wxApi = WXAPIFactory.createWXAPI(contexts,appId,true);
         boolean res =wxApi.registerApp(appId);
         StateManager.setApi(wxApi);
         result.success(appId);
