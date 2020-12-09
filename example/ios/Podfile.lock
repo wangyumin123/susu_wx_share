@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - susu_wx_share (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - susu_wx_share (from `.symlinks/plugins/susu_wx_share/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  susu_wx_share:
+    :path: ".symlinks/plugins/susu_wx_share/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  susu_wx_share: a16a3783f1f4419eb918269d6d58720e4fc969f2
+
+PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
+
+COCOAPODS: 1.9.1
